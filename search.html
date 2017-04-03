@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Search through your tabs</title>
+    <style>
+      html {
+        width: 500px;
+        height: 500px;
+      }
+
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+      }
+      #result {
+        /* avoid an excessively wide status text */
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 800px;
+        font-size: 12px;
+        margin-top: 15px;
+      }
+
+      .highlight {
+        background-color: yellow;
+      }
+      .searchResult {
+        cursor: pointer;
+      }
+    </style>
+    <script src="jquery-3.2.0.min.js"></script>
+    <script src="jquery.debounce-1.0.5.js"></script>
+    <script src="search.js"></script>
+  </head>
+  <body>
+    <input type="text" placeholder="Search..." id="searchBar"/>
+    <div id="result">No Results Found</div>
+  </body>
+</html>
+
