@@ -36,6 +36,7 @@ var highlight = function(content, searchTerm){
 			    behavior: "auto", // or "auto" or "instant"
 			    block: "start" // or "end"
 			});
+			document.body.scrollTop -= 80;
 			found = true;
 			return false;
 		}

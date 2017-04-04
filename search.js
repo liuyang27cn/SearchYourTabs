@@ -1,5 +1,7 @@
 (function(){
 
+  var previewPreSize = 20;
+  var previewSize = 100;
   var searchableContent = {};
 
   var openTab = function(tabId, content, searchTerm){
@@ -21,7 +23,14 @@
       $("#searchBar").on("keyup", $.debounce(function(){
         var $this = $(this);
         var text = $.trim($this.val()).toLowerCase();
-        console.log("searching text " + text);
+        
+        // don't search empty string
+        if (text == "")
+        {
+          $result.text("");
+          return;
+        }
+
         $result.text("searching...");
         var results = [];
         var resultHtml = "";
@@ -30,7 +39,7 @@
           if (searchableContent.hasOwnProperty(tabId))
           {
             var contentList = searchableContent[tabId];
-            for (var i = 0; i < contentList.length - 1; i++)
+            for (var i = 0; i < contentList.length; i++)
             {
               if (contentList[i].toLowerCase().search(text) > -1)
               {
@@ -47,12 +56,12 @@
         if (results.length > 0)
         {
           var textLength = text.length;
-          for (var i = 0; i < results.length - 1; i++)
+          for (var i = 0; i < results.length; i++)
           {
             var content = results[i].text;
             var tabId = results[i].tabId;
             var startIndex = content.toLowerCase().search(text);
-            resultHtml += "<div class='searchResult' data-tabid='"+ tabId + "' data-content='" + encodeURIComponent(content) + "'>" + content.substring(Math.max(0, startIndex - 50), startIndex) + "<span class='highlight'>" + content.substring(startIndex, startIndex + textLength) + "</span>" + content.substring(startIndex + textLength, Math.min(content.length, startIndex + textLength + 50)) + "</div>\n";
+            resultHtml += "<div class='searchResult' data-tabid='"+ tabId + "' data-content='" + encodeURIComponent(content) + "'>" + content.substring(Math.max(0, startIndex - previewPreSize), startIndex) + "<span class='highlight'>" + content.substring(startIndex, startIndex + textLength) + "</span>" + content.substring(startIndex + textLength, Math.min(content.length, previewSize)) + "</div>\n";
           }
           $result.html(resultHtml);
         }
@@ -68,6 +77,7 @@
       var tabId = $this.data("tabid");
       var content = $this.data("content");
       openTab(tabId, content, $("#searchBar").val());
+      window.close();
     });
     // end search content
   });
