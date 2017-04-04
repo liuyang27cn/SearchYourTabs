@@ -33,8 +33,8 @@ var highlight = function(content, searchTerm){
 			$highlightContainer
 				.css("background-color", "yellow");
 			$highlightContainer[0].scrollIntoView({
-			    behavior: "auto", // or "auto" or "instant"
-			    block: "start" // or "end"
+				behavior: "auto", // or "auto" or "instant"
+				block: "start" // or "end"
 			});
 			document.body.scrollTop -= 80;
 			found = true;
@@ -63,11 +63,11 @@ function DOMtoString(document_root) {
 		if (text && html.indexOf(text) < 0)
 			html.push(text);
 	});
-    return html;
+	return html;
 }
 
 chrome.runtime.sendMessage(null, {
-    action: "getContent",
-    html: DOMtoString(document.body)
+	action: "getContent",
+	html: DOMtoString(document.body)
 });
 
