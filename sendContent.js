@@ -1,6 +1,6 @@
 var notSelector = ':not(head,noscript,script,meta,style,i,link,html):visible';
 var selector = '*:not(:has(*)):visible';
-
+var $contentElements = [];
 var getContentElements = function () {
 	var nodes = [];
 	var leafNodes = $('body').find(selector);
@@ -18,16 +18,15 @@ var getContentElements = function () {
 };
 
 var highlight = function(content, searchTerm){
-	var $textContainers = getContentElements();
 	var found = false;
 	content = decodeURIComponent(content);
 
-	$.each($textContainers, function (index, element) {
+	$.each($contentElements, function (index, element) {
 		var text = $.trim($(element).text());	
 
 		if (text == content)
 		{
-			var $highlightContainer = $textContainers[index];
+			var $highlightContainer = $contentElements[index];
 			$highlightContainer
 				.css("transition", "all 1.5s ease");
 			$highlightContainer
@@ -56,9 +55,10 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 
 function DOMtoString(document_root) {
 	var html = [];
-	var $elements = getContentElements();
+	// only load it once
+	$contentElements = getContentElements();
 
-	$.each($elements, function (index, element) {
+	$.each($contentElements, function (index, element) {
 		var text = $.trim($(element).text());	
 		if (text && html.indexOf(text) < 0)
 			html.push(text);
