@@ -63,3 +63,16 @@ body {
 .searchResult:hover {
 	background-color: #6497ed;
 }
+
+::-webkit-scrollbar {
+  width: 2px;
+  background-color: rgb(255, 255, 255);
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  background-color: #8f8f8f;
+  /*border-width: 12px 0;*/
+  min-height: 80px;
+}
+
+
