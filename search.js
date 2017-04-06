@@ -55,6 +55,7 @@
 
 	$(document).ready(function() {
 		var $result = $("#result");
+		var $tomatosContainer = $("#tomatosContainer");
 
 		// search content
 			$("#searchBar").on("keyup", $.debounce(function(){
@@ -65,10 +66,12 @@
 				if (text == "")
 				{
 					$result.text("");
+					$tomatosContainer.removeClass("hidden");
 					return;
 				}
 
 				$result.text("searching...");
+				$tomatosContainer.addClass("hidden");
 				var results = [];
 				var resultHtml = "";
 				for (var tabId in searchableContent)
@@ -96,10 +99,12 @@
 						resultHtml += getSearchResultHtml(tabId, text, results[i]);           
 					}
 					$result.html(resultHtml);
+					$tomatosContainer.addClass("hidden");
 				}
 				else
 				{
 					 $result.text("No Results Found");
+					 $tomatosContainer.addClass("hidden");
 				}
 
 			}, 250));
@@ -114,7 +119,7 @@
 		// end search content
 	});
 
-// save content below
+	// save content below
 	var saveContent = function(tabId, html) {
 		searchableContent[tabId] = html;
 	};
@@ -127,10 +132,32 @@
 	});
 
 	var queryInfo = {
-			currentWindow: true
+		currentWindow: true
 	};
 
-	chrome.tabs.query(queryInfo, function callback(tabs){
+	chrome.tabs.query(queryInfo, function callback(tabs) {
+		// render tomatos
+		var html = "";
+		for(var i = 0; i < 40; i++)
+		{
+			if (i < tabs.length)
+			{
+				html += "<div class='tomatoContainer'>" + 
+					"<div class='tomato42'><img src='tomato42.png' height='26'></div>" +
+				"</div>";
+			}
+			else
+			{
+				html += "<div class='tomatoContainer'>" + 
+					"<div class='tomatoSprout'></div>" +
+				"</div>";
+			}
+			
+		}
+		html += "<div class='tabNumDisplay'>" + tabs.length + " tabs</div>";
+		$("#tomatosContainer").html(html);
+
+		// insert scripts onto tabs
 		for(var i = 0; i < tabs.length; i++)
 		{
 			var currentTab = tabs[i];

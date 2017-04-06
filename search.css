@@ -1,26 +1,33 @@
 html {
-  width: 350px;
-  height: 500px;
+	width: 350px;
+	height: 500px;
 }
 
 body {
-  font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+	font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
 }
 
 #searchBar {
-  width: 100%;
-  outline-width: 0;
-  width: 327px;
+	width: 100%;
+	outline-width: 0;
+	width: 327px;
 }
 
 #result {
-  /* avoid an excessively wide status text */
-  white-space: pre;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  max-width: 800px;
-  font-size: 12px;
-  margin-top: 15px;
+	/* avoid an excessively wide status text */
+	white-space: pre;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-width: 800px;
+	font-size: 12px;
+	margin-top: 15px;
+}
+
+#tomatosContainer {
+	white-space: pre;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-width: 800px;
 }
 
 .favIcon {
@@ -28,20 +35,20 @@ body {
 	height: 22px;
 	top: 9px;
 	left: 7px;
-    position: relative;
+	position: relative;
 }
 
 .textArea {
 	float: left;
 	width: 290px;
-    overflow: hidden;
-    padding: 5px 0 5px 15px;
+	overflow: hidden;
+	padding: 5px 0 5px 15px;
 }
 
 .tabTitle {
 	font-size: 10px;
-    margin-bottom: 3px;
-    font-family: helvetica-bold;
+	margin-bottom: 3px;
+	font-family: helvetica-bold;
 }
 
 .searchHighlight {
@@ -64,14 +71,41 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
-  background-color: rgb(255, 255, 255);
+	width: 2px;
+	background-color: rgb(255, 255, 255);
 }
 
 ::-webkit-scrollbar-thumb:vertical {
-  background-color: #8f8f8f;
-  /*border-width: 12px 0;*/
-  min-height: 80px;
+	background-color: #8f8f8f;
+	/*border-width: 12px 0;*/
+	min-height: 80px;
+}
+
+.tomatoContainer {
+	height: 26px;
+	width: 26px;
+	float: left;
+	margin: 15px 20px;
+}
+
+.tomatoSprout {
+	height: 6px;
+	width: 6px;
+	border-radius: 6px;
+	background-color: #ff5c6b;
+	margin: auto;
+	margin-top: 10px;
+}
+
+.hidden {
+	display: none;
+}
+
+.tabNumDisplay {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+	color: #666;
 }
 
 
